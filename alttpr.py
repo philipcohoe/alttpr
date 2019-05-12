@@ -15,7 +15,7 @@ downloadsDir = "/home/philip/Downloads/"
 # set gameDir to where you want the game files to eventually go
 gameDir = "/home/philip/Downloads/"
 
-random.seed(date.today().toordinal())
+random.seed(date.today())
 
 entrance = random.randint(0, 1) == 1
 enemize = random.randint(0, 1) == 1
