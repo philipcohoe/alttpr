@@ -1,6 +1,7 @@
 import random
 import os
 import time
+from datetime import date
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -14,8 +15,7 @@ downloadsDir = "/home/philip/Downloads/"
 # set gameDir to where you want the game files to eventually go
 gameDir = "/home/philip/Downloads/"
 
-# Here's the seed
-random.seed(0)
+random.seed(date.today().toordinal())
 
 entrance = random.randint(0, 1) == 1
 enemize = random.randint(0, 1) == 1
