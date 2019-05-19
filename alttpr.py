@@ -16,6 +16,7 @@ downloadsDir = "/home/philip/Downloads/"
 gameDir = "/home/philip/Downloads/"
 
 random.seed(date.today())
+#random.seed(0)
 
 entrance = random.randint(0, 1) == 1
 enemize = random.randint(0, 1) == 1
@@ -65,15 +66,18 @@ if enemize or boss or pots or palette:
         setToggle("enemizer-enemy")
 setOption("variation", variation)
 setOption("goal", goal)
+time.sleep(1)
 driver.find_element_by_name("generate").click()
 WebDriverWait(driver, 30).until(ec.presence_of_element_located((By.XPATH, "//button[contains(text(), 'Save Spoiler')]")))
+time.sleep(1)
 setToggle("quickswap")
 setOption("heart-color", heart)
+setOption("menu-speed", "Fast")
 setOption("sprite-gfx", "Random")
-time.sleep(0.1)
+time.sleep(1)
 driver.find_element_by_xpath("//button[contains(text(), 'Save Spoiler')]").click()
 driver.find_element_by_xpath("//button[contains(text(), 'Save Rom')]").click()
-time.sleep(0.1)
+time.sleep(1)
 
 for filename in os.listdir(downloadsDir):
     if filename.startswith("ALttP"):
