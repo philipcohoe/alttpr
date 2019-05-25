@@ -1,4 +1,3 @@
-import random
 import os
 import time
 from datetime import date
@@ -15,23 +14,30 @@ downloadsDir = "/home/philip/Downloads/"
 # set gameDir to where you want the game files to eventually go
 gameDir = "/home/philip/Downloads/"
 
-random.seed(date.today())
-#random.seed(0)
+seed = date.today().toordinal()
+def randint(mn, mx):
+    global seed
+    seed = 1103515245 * seed + 12345
+    return ((seed / 65536) % 32768) % (mx - mn + 1) + mn
 
-entrance = random.randint(0, 1) == 1
-enemize = random.randint(0, 1) == 1
-boss = random.randint(0, 1) == 1
-pots = random.randint(0, 1) == 1
-palette = random.randint(0, 1) == 1
-variation = random.choice(["None", "Keysanity", "Retro"])
-heart = random.choice(["Blue", "Green", "Red", "Yellow"])
+def choice(l):
+    i = randint(0, len(l) - 1)
+    return l[i]
+
+entrance = randint(0, 1) == 1
+enemize = randint(0, 1) == 1
+boss = randint(0, 1) == 1
+pots = randint(0, 1) == 1
+palette = randint(0, 1) == 1
+variation = choice(["None", "Keysanity", "Retro"])
+heart = choice(["Blue", "Green", "Red", "Yellow"])
 goals = ["Defeat Ganon", "All Dungeons", "Master Sword Pedestal", "Triforce Pieces"]
 if entrance:
     goals.append("Crystals")
-    shuffle = random.choice(["Simple", "Restricted", "Full", "Crossed", "Insanity"])
+    shuffle = choice(["Simple", "Restricted", "Full", "Crossed", "Insanity"])
 else:
-    state = random.choice(["Open", "Inverted"])
-goal = random.choice(goals)
+    state = choice(["Open", "Inverted"])
+goal = choice(goals)
 
 #options = Options()
 #options.headless = True
@@ -69,7 +75,6 @@ setOption("goal", goal)
 time.sleep(1)
 driver.find_element_by_name("generate").click()
 WebDriverWait(driver, 30).until(ec.presence_of_element_located((By.XPATH, "//button[contains(text(), 'Save Spoiler')]")))
-time.sleep(1)
 setToggle("quickswap")
 setOption("heart-color", heart)
 setOption("menu-speed", "Fast")
