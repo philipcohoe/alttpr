@@ -49,7 +49,7 @@ def setOption(key, value):
     driver.find_element_by_xpath("//div[@id='" + key + "']//span[contains(text(), '" + value + "')]").click()
 
 def setToggle(key):
-    driver.find_element_by_xpath("//div[@id='" + key + "']").click()
+    driver.find_element_by_xpath("//div[@id='" + key + "']/label/div").click()
 
 driver.get("https://alttpr.com/en/randomizer")
 driver.find_element_by_tag_name("input").send_keys(romDir + "Zelda no Densetsu - Kamigami no Triforce (Japan).sfc")
