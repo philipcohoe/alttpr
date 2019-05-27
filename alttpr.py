@@ -18,7 +18,7 @@ seed = date.today().toordinal()
 def randint(mn, mx):
     global seed
     seed = 1103515245 * seed + 12345
-    return ((seed / 65536) % 32768) % (mx - mn + 1) + mn
+    return ((seed // 65536) % 32768) % (mx - mn + 1) + mn
 
 def choice(l):
     i = randint(0, len(l) - 1)
